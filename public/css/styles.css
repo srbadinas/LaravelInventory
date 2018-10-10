@@ -1,0 +1,36 @@
+body
+{
+    background: #ebf0f4;
+}
+
+textarea
+{
+    resize: vertical;
+}
+
+input[type="checkbox"]
+{
+    cursor: pointer;
+}
+
+div#wrapper
+{
+	margin-top: 20px;
+}
+
+div#content-wrapper
+{
+	background: #fff;
+	border-radius: 10px;
+}
+
+div#content
+{
+	margin-top: 20px;
+}
+
+#footer-wrapper
+{
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
