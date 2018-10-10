@@ -14,3 +14,5 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::resource('users', 'UserController');
