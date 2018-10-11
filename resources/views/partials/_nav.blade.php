@@ -16,7 +16,7 @@
                 <i class="fa fa-users"></i>User Management
                 <span class="glyphicon glyphicon-chevron-down"></span>
                 <ul class="navigation-sub-menu collapse" id="user">
-                    <li onclick="location.href='{{ route('users.index') }}'"><i class="fa fa-user"></i>User Accounts</li>
+                    <li onclick="location.href='{{ route('users.index') }}'"><i class="fa fa-user"></i>Users</li>
                     <li onclick="location.href=''"><i class="fa fa-cogs"></i>User Roles</li>
                 </ul>
             </a>

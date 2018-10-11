@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('lastname', 100);
             $table->string('firstname', 100);
-            $table->string('middlename', 100);
+            $table->string('contact_number', 12);
             $table->boolean('is_admin');
             $table->boolean('is_active')->default(1);
             $table->rememberToken();
@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
         $user->password = Hash::make('sa12345');
         $user->lastname = 'Badinas';
         $user->firstname = 'Sebastian Renz';
-        $user->middlename = 'Tobias';
+        $user->contact_number = '639295743501';
         $user->is_admin = '1';
         $user->is_active = '1';
         $user->save();

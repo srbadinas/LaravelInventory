@@ -13,6 +13,36 @@ input[type="checkbox"]
     cursor: pointer;
 }
 
+td, th
+{
+    vertical-align: middle !important;
+}
+
+hr
+{
+    width: 100%;
+}
+
+dt, dd
+{
+    padding: 3px 0;
+}
+
+.table-responsive
+{
+    margin-top: 10px !important;
+}
+
+.margin-top-sm
+{
+    margin-top: 10px !important;
+}
+
+.dropdown-menu
+{
+    min-width: 170px !important;
+}
+
 /* Header */
 
 #header-wrapper

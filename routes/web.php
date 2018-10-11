@@ -13,6 +13,6 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::resource('users', 'UserController');
+Route::get('/', 'HomeController@index')->middleware('auth');
+Route::resource('users', 'UserController')->middleware('auth');
