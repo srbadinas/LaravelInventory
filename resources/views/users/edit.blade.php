@@ -36,12 +36,15 @@
 					<div class="form-group">
 						<div class="col-md-4">
 							{{ Form::label('contact_number', 'Contact Number:', ['class' => 'control-label']) }}
-							{{ Form::number('contact_number', null, ['class' => 'form-control']) }}
+							<div class="input-group">
+							    <span class="input-group-addon">+63</span>
+								{{ Form::number('contact_number', null, ['class' => 'form-control']) }}
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-4">
-							<a href="{{ url()->previous() }}" class="btn btn-danger btn-sm">Cancel</a>
+							<a href="{{ url()->previous() == route('users.edit', $user->id) ? route('users.show', $user->id) : url()->previous() }}" class="btn btn-danger btn-sm">Cancel</a>
 							{{ Form::submit('Save Changes', ['class' => 'btn btn-success btn-sm']) }}
 						</div>
 					</div>

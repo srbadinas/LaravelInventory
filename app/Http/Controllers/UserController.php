@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all()->take(10);
+        $users = User::orderBy('id', 'asc')->paginate(5);
 
 
         return view('users.index')->with('users', $users);
@@ -41,11 +41,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required|max:255',
-            'email' => 'required|max:255|email',
+            'username' => 'required|max:255|unique:users',
+            'email' => 'required|max:255|unique:users|email',
             'lastname' => 'required|max:255',
             'firstname' => 'required|max:255',
-            'contact_number' => 'required|numeric',
+            'contact_number' => 'required|numeric|digits:10',
         ]);
 
         $user = new User;
@@ -73,7 +73,15 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        return view('users.show')->with('user', $user);
+        if ($user)
+        {
+            return view('users.show')->with('user', $user);
+        }
+        else 
+        {
+            return redirect()->route('users.index')->withErrors('User not found.');
+        }
+
     }
 
     /**
@@ -86,7 +94,14 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        return view('users.edit')->with('user', $user);
+        if ($user)
+        {
+            return view('users.edit')->with('user', $user);
+        }
+        else 
+        {
+            return redirect()->route('users.index')->withErrors('User not found.');
+        }
     }
 
     /**
@@ -103,7 +118,7 @@ class UserController extends Controller
             'email' => 'required|max:255|email',
             'lastname' => 'required|max:255',
             'firstname' => 'required|max:255',
-            'contact_number' => 'required|numeric',
+            'contact_number' => 'required|numeric|digits:10',
         ]);
 
         $user = User::find($id);
@@ -114,7 +129,7 @@ class UserController extends Controller
         $user->contact_number = $request->input('contact_number');
         $user->save();
 
-        Session::flash('success', 'User has been updated.');
+        Session::flash('success', 'This user was successfully saved.');
 
         return redirect()->route('users.show', $user->id);
     }
@@ -127,8 +142,21 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+
+
+        $user->delete();
+
+        Session::flash('success', 'User was successfully deleted.');
+        return redirect()->route('users.index');
     }
 
+    public function search(Request $request)
+    {
+        $users = User::where('id', '3');
+        //$users = User::where($request->search_by, $request->search)->take(10);
+        return view('users.index')->with('users', $users);
+    }
 
 }

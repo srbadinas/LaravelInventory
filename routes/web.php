@@ -16,3 +16,4 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->middleware('auth');
 Route::resource('users', 'UserController')->middleware('auth');
+Route::get('/search', 'UserController@search')->middleware('auth')->name('users.search');

@@ -32,6 +32,8 @@
 					<dl class="dl-horizontal">
 		  				<dt>Date Created:</dt>
 		  				<dd>{{ date('M j, Y h:i:s A', strtotime($user->created_at)) }}</dd>
+					</dl>
+					<dl class="dl-horizontal">
 		  				<dt>Date Updated:</dt>
 		  				<dd>{{ date('M j, Y h:i:s A', strtotime($user->updated_at)) }}</dd>
 					</dl>
@@ -40,7 +42,9 @@
 							<a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm btn-block">Edit</a>
 						</div>
 						<div class="col-sm-6">
-							<a href="" class="btn btn-danger btn-sm btn-block">Delete</a>
+							{!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
+								{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm btn-block']) !!}
+							{!! Form::close() !!}
 						</div>
 						<div class="col-sm-12 margin-top-sm">
 							<a href="{{ route('users.index') }}" class="btn btn-default btn-block">Back to List</a>

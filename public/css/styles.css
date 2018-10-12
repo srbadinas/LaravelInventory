@@ -28,6 +28,13 @@ dt, dd
     padding: 3px 0;
 }
 
+input[type=number][name="contact_number"]::-webkit-inner-spin-button,
+input[type=number][name="contact_number"]::-webkit-outer-spin-button 
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .table-responsive
 {
     margin-top: 10px !important;

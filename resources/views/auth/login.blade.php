@@ -27,7 +27,7 @@
 					<div class="form-group">
 						<div class="checkbox">
 							<label>
-								{{ Form::checkbox('remember_me') }} Remember Me
+								{{ Form::checkbox('remember') }} Remember Me
 							</label>
 						</div>
 					</div>

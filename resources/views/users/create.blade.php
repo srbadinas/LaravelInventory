@@ -36,7 +36,10 @@
 					<div class="form-group">
 						<div class="col-md-4">
 							{{ Form::label('contact_number', 'Contact Number:', ['class' => 'control-label']) }}
-							{{ Form::number('contact_number', null, ['class' => 'form-control']) }}
+							 <div class="input-group">
+							    <span class="input-group-addon">+63</span>
+								{{ Form::number('contact_number', null, ['class' => 'form-control']) }}
+							 </div>
 						</div>
 					</div>
 					<div class="form-group">

@@ -10,16 +10,33 @@
 			<hr>
 		</div>
 		<div class="col-md-12">
-			<div class="col-md-4">
-				<div class="row">
-					<div class="has-feedback">
-					  	<input type="text" class="form-control" placeholder="Search">
-					  	<span class="glyphicon glyphicon-search form-control-feedback"></span>
-					</div>
-				</div>
-			</div>
 			<div class="col-md-8">
-				<a href="{{ route('users.create') }}" class="btn btn-success btn-sm pull-right">Create New User</a>
+				{!! Form::open(['route' => 'users.search', 'method' => 'get']) !!}
+					<div class="row">
+						<div class="form-inline">
+							<div class="form-group">
+								{{ Form::label('search_by', 'Search By:') }}
+								{{ Form::select('search_by', [
+										'id' => 'ID',
+										'username' => 'Username',
+										'lastname' => 'Lastname',
+										'firstname' => 'Firstname',
+									], null, ['class' => 'form-control']) }}
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									{{ Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Search']) }}
+			      					<span class="input-group-btn">
+			        					<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+			        				</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				{!! Form::close() !!}
+			</div>
+			<div class="col-md-4">
+				<a href="{{ route('users.create') }}" class="btn btn-success btn-sm btn-block pull-right">Create New User</a>
 			</div>
 		</div>
 
@@ -28,7 +45,7 @@
 				<table class="table table-striped table-condensed">
 					<thead>
 						<tr class="info">
-							<th>ID</th>
+							<th>#</th>
 							<th>Username</th>
 							<th>Lastname</th>
 							<th>Firstname</th>
@@ -39,7 +56,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($users->all() as $user)
+						@foreach ($users as $user)
 							<tr>
 								<th>{{ $user->id }}</th>
 								<td>{{ $user->username }}</td>
@@ -55,6 +72,9 @@
 						@endforeach	
 					</tbody>
 				</table>
+			</div>
+			<div class="text-center">
+				{!! $users->links() !!}
 			</div>
 		</div>
 	</div>
