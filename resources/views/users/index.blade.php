@@ -10,7 +10,7 @@
 			<hr>
 		</div>
 		<div class="col-md-12">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				{!! Form::open(['route' => 'users.search', 'method' => 'get']) !!}
 					<div class="row">
 						<div class="form-inline">
@@ -31,12 +31,12 @@
 			        				</span>
 								</div>
 							</div>
+							<div class="form-group pull-right">
+								<a href="{{ route('users.create') }}" class="btn btn-success pull-right">Create New User</a>
+							</div>
 						</div>
 					</div>
 				{!! Form::close() !!}
-			</div>
-			<div class="col-md-4">
-				<a href="{{ route('users.create') }}" class="btn btn-success btn-sm btn-block pull-right">Create New User</a>
 			</div>
 		</div>
 

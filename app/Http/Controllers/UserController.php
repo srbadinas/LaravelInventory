@@ -41,7 +41,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required|max:255|unique:users',
+            'username' => 'required|max:255|unique:users,username',
             'email' => 'required|max:255|unique:users|email',
             'lastname' => 'required|max:255',
             'firstname' => 'required|max:255',
@@ -114,7 +114,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'username' => 'required|max:255',
+            'username' => 'required|max:255|unique:users,username,'.$id,
             'email' => 'required|max:255|email',
             'lastname' => 'required|max:255',
             'firstname' => 'required|max:255',
@@ -152,10 +152,10 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function search(Request $request)
+    public function search($search_by, $search)
     {
-        $users = User::where('id', '3');
-        //$users = User::where($request->search_by, $request->search)->take(10);
+        //$users = User::where('id', '3');
+        $users = User::where($search_by, '=', $search)->take(10)->get();
         return view('users.index')->with('users', $users);
     }
 
