@@ -46,7 +46,7 @@
 								{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm btn-block']) !!}
 							{!! Form::close() !!}
 						</div>
-						<div class="col-sm-12 margin-top-sm">
+						<div class="col-sm-12 margin-top-10">
 							<a href="{{ route('users.index') }}" class="btn btn-default btn-block">Back to List</a>
 						</div>
 					</div>

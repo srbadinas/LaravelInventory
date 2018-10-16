@@ -40,7 +40,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-12">
+		<div class="col-md-12 margin-top-10">
 			<div class="table-responsive">
 				<table class="table table-striped table-condensed">
 					<thead>

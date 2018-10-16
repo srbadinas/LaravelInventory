@@ -144,7 +144,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-
+        if ($user->is_admin)
+        {
+            return redirect()->route('users.show', $user->id)->withErrors('Unable to delete administrator account.');
+        }
 
         $user->delete();
 

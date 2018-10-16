@@ -35,19 +35,19 @@ input[type=number][name="contact_number"]::-webkit-outer-spin-button
     margin: 0;
 }
 
-.table-responsive
+.margin-top-10
 {
     margin-top: 10px !important;
 }
 
-.margin-top-sm
+.margin-top-bottom-10
 {
-    margin-top: 10px !important;
+    margin: 10px 0px !important;
 }
 
 .dropdown-menu
 {
-    min-width: 170px !important;
+    min-width: 192px !important;
 }
 
 /* Header */
@@ -95,12 +95,6 @@ input[type=number][name="contact_number"]::-webkit-outer-spin-button
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-
-#logout-container
-{
-    margin: 10px 0;
-}
-
 
 /* Content */
 
