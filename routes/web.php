@@ -11,9 +11,17 @@
 |
 */
 
+// Authentication Routes
 Auth::routes();
+Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/', 'HomeController@index')->middleware('auth');
-Route::resource('users', 'UserController')->middleware('auth');
-Route::get('/users/search', 'UserController@search')->middleware('auth')->name('users.search');
+Route::group(['middleware' => 'auth'], function() {
+
+	// Page Routes
+	Route::get('/', 'HomeController@index');
+
+	// User Routes
+	Route::post('/users/search/{search_by?}/{search?}', ['as' => 'users.search', 'uses' => 'UserController@search']);
+	Route::resource('users', 'UserController');
+});
+

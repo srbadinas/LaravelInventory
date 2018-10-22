@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class UserController extends Controller
@@ -14,11 +16,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $users = User::orderBy('id', 'asc')->paginate(5);
-
-
         return view('users.index')->with('users', $users);
     }
 
@@ -149,16 +150,21 @@ class UserController extends Controller
             return redirect()->route('users.show', $user->id)->withErrors('Unable to delete administrator account.');
         }
 
+        if ($user->id == Auth::user()->id)
+        {
+            return redirect()->route('users.show', $user->id)->withErrors('Unable to delete currently logged in account.');
+        }
+
         $user->delete();
 
         Session::flash('success', 'User was successfully deleted.');
         return redirect()->route('users.index');
     }
 
-    public function search($search_by, $search)
+    public function search(Request $request)
     {
         //$users = User::where('id', '3');
-        $users = User::where($search_by, '=', $search)->take(10)->get();
+        $users = User::where($request->search_by, 'like', '%' . $request->search . '%')->paginate(10);
         return view('users.index')->with('users', $users);
     }
 

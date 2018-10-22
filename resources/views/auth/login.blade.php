@@ -33,7 +33,8 @@
 					</div>
 
 					<div class="row">
-						{{ Form::submit('Log in', ['class' => 'btn btn-default btn-block']) }}
+						{{ Form::submit('Log in', ['class' => 'btn btn-primary btn-block']) }}
+						<div class="col-md-12 margin-top-10"><a href="{{ route('password.request') }}">Forgot Password?</a></div>
 					</div>
 
 				{!! Form::close() !!}
