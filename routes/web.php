@@ -23,5 +23,12 @@ Route::group(['middleware' => 'auth'], function() {
 	// User Routes
 	Route::post('/users/search/{search_by?}/{search?}', ['as' => 'users.search', 'uses' => 'UserController@search']);
 	Route::resource('users', 'UserController');
+
+	// Product Routes
+	Route::resource('inventory/products', 'ProductController');
+
+	// Category Routes
+	Route::post('/categories/search/{search_by?}/{search?}', ['as' => 'categories.search', 'uses' => 'CategoryController@search']);
+	Route::resource('inventory/categories', 'CategoryController');
 });
 

@@ -45,7 +45,7 @@
 					<div class="form-group">
 						<div class="col-md-4">
 							<a href="{{ route('users.index') }}" class="btn btn-default btn-sm">Back to List</a>
-							{{ Form::submit('Create New User', ['class' => 'btn btn-success btn-sm']) }}
+							{{ Form::submit('Create', ['class' => 'btn btn-success btn-sm']) }}
 						</div>
 					</div>
 				</div>

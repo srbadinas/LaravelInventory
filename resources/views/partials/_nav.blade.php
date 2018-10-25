@@ -27,11 +27,10 @@
                 <i class="fa fa-boxes"></i>Inventory Management
                 <span class="glyphicon glyphicon-chevron-down"></span>
                 <ul class="navigation-sub-menu collapse" id="inventory">
-                    <li onclick="location.href=''"><i class="fa fa-box"></i>Products</li>
-                    <li onclick="location.href=''"><i class="fa fa-tags"></i>Category</li>
+                    <li onclick="location.href='{{ route('products.index') }}'"><i class="fa fa-box"></i>Products</li>
+                    <li onclick="location.href='{{ route('categories.index') }}'"><i class="fa fa-tags"></i>Category</li>
                 </ul>
             </a>
         </li>
-
     </ul>
 </div>
