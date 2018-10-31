@@ -11,7 +11,7 @@
 		</div>
 		<div class="col-md-12">
 			<div class="col-md-12">
-				{!! Form::open(['route' => 'categories.search', 'method' => 'post']) !!}
+				{!! Form::open(['route' => 'categories.search', 'method' => 'get']) !!}
 					<div class="row">
 						<div class="form-inline">
 							<div class="form-group">

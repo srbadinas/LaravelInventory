@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('inventory/products', 'ProductController');
 
 	// Category Routes
-	Route::post('/categories/search/{search_by?}/{search?}', ['as' => 'categories.search', 'uses' => 'CategoryController@search']);
+	Route::post('inventory/categories/search?search_by={search_by?}&search={search?}', ['as' => 'categories.search', 'uses' => 'CategoryController@search']);
 	Route::resource('inventory/categories', 'CategoryController');
 });
 

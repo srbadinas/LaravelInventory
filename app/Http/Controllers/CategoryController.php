@@ -46,12 +46,12 @@ class CategoryController extends Controller
         $user = User::find(Auth::user()->id);
 
         $category = new Category;
-        $category->name = $request->input('name');
+        $category->name = $request->name;
         $category->created_by = $user->id;
         $category->updated_by = $user->id;
         $category->save();
 
-        return view('inventory.categories.show')->with('category', $category);
+        return redirect()->route('categories.show', $category->id);
     }
 
     /**
@@ -82,7 +82,16 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        if ($category)
+        {
+            return view('inventory.categories.edit')->with('category', $category);
+        }
+        else 
+        {
+            return redirect()->route('categories.index')->withErrors('Category not found.');
+        }
     }
 
     /**
@@ -94,7 +103,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max: 255',
+        ]);
+
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->save();
+
+        Session::flash('success', 'Category has been updated.');
+        return redirect()->route('categories.show', $category->id);
     }
 
     /**
@@ -112,10 +130,10 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
-    public function search(Request $request)
+    public function search($search_by, $search)
     {
         //$users = User::where('id', '3');
-        $categories = Category::where($request->search_by, 'like', '%' . $request->search . '%')->paginate(10);
+        $categories = Category::where($search_by, 'like', '%' . $search . '%')->paginate(10);
         return view('inventory.categories.index')->with('categories', $categories);
     }
 }

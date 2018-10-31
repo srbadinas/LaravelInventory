@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -52,7 +53,7 @@ class UserController extends Controller
         $user = new User;
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make('sa12345');
+        $user->password = Hash::make(Str::random(10));
         $user->lastname = $request->lastname;
         $user->firstname = $request->firstname;
         $user->contact_number = $request->contact_number;
@@ -61,7 +62,7 @@ class UserController extends Controller
         $user->save();
 
         Session::flash('success', 'User has been created.');
-        return view('users.show')->with('user', $user);
+        return redirect()->route('users.show', $user->id);
     }
 
     /**
@@ -115,7 +116,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'username' => 'required|max:255|unique:users,username,'.$id,
+            'username' => 'required|max:255|unique:users, username,'.$id,
             'email' => 'required|max:255|email',
             'lastname' => 'required|max:255',
             'firstname' => 'required|max:255',
@@ -123,11 +124,11 @@ class UserController extends Controller
         ]);
 
         $user = User::find($id);
-        $user->username = $request->input('username');
-        $user->email = $request->input('email');
-        $user->lastname = $request->input('lastname');
-        $user->firstname = $request->input('firstname');
-        $user->contact_number = $request->input('contact_number');
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->contact_number = $request->contact_number;
         $user->save();
 
         Session::flash('success', 'This user was successfully saved.');
